@@ -201,8 +201,10 @@ type AllTextProcessors = {
         };
     };
     yi: {
-        removeYiddishDiacritics: TextProcessor<boolean>;
-        convertYiddishLigatures: BidirectionalConversionPreprocessor;
+        pre: {
+            removeYiddishDiacritics: TextProcessor<boolean>;
+            convertYiddishLigatures: BidirectionalConversionPreprocessor;
+        };
     };
     yue: Record<string, never>;
     zh: Record<string, never>;

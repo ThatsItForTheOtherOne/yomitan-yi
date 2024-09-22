@@ -376,7 +376,7 @@ const languageDescriptors = [
         name: 'Yiddish',
         exampleText: 'באַשאַפֿן',
         textPreprocessors: {
-            ...convertYiddishLigatures,
+            convertYiddishLigatures,
             removeYiddishDiacritics,
         },
     },
