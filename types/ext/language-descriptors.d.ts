@@ -205,6 +205,9 @@ type AllTextProcessors = {
             removeYiddishDiacritics: TextProcessor<boolean>;
             convertYiddishLigatures: BidirectionalConversionPreprocessor;
         };
+        post: {
+            convertFinalLetters: TextProcessor<boolean>;
+        };
     };
     yue: Record<string, never>;
     zh: Record<string, never>;
