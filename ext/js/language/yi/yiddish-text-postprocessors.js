@@ -15,7 +15,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {basicTextProcessorOptions} from '../text-processors.js';
 
 const final_letter_map = new Map([
     ['מ', 'ם'],
@@ -30,10 +29,10 @@ const final_letter_map = new Map([
 export const convertFinalLetters = {
     name: 'Convert to Final Letters',
     description: 'קויף → קויפֿ',
-    options: basicTextProcessorOptions,
-    process: (str, setting) => {
-        if (setting && [...final_letter_map.keys()].includes(str.charAt(str.length - 1))) {
-            str = str.substring(0, str.length - 2) + final_letter_map.get(str.substring(str.length - 1));
+    options: [true],
+    process: (str) => {
+        if ([...final_letter_map.keys()].includes(str.charAt(str.length - 1))) {
+            str = str.substring(0, str.length - 1) + final_letter_map.get(str.substring(str.length - 1));
         }
         return str;
     },
