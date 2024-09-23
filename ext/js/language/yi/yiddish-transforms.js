@@ -15,11 +15,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import {suffixInflection} from '../language-transforms.js';
+
+/** @typedef {keyof typeof conditions} Condition */
+
 /*
 TODO
     Nouns
         inflectionalSuffixes
-            -s (plural
+            -s (plural)
             -es (plural)
             -n (plural)
             -en (plural)
@@ -47,3 +51,58 @@ TODO
         -er
         -e
 */
+
+const conditions = {
+    v: {
+        name: 'Verb',
+        isDictionaryForm: true,
+    },
+    n: {
+        name: 'Noun',
+        isDictionaryForm: true,
+        subConditions: ['np', 'ns'],
+    },
+    np: {
+        name: 'Noun plural',
+        isDictionaryForm: false,
+    },
+    ns: {
+        name: 'Noun singular',
+        isDictionaryForm: true,
+    },
+    adj: {
+        name: 'Adjective',
+        isDictionaryForm: true,
+    },
+    adv: {
+        name: 'Adverb',
+        isDictionaryForm: true,
+    },
+};
+
+/** @type {import('language-transformer').LanguageTransformDescriptor<Condition>} */
+export const yiddishTransforms = {
+    language: 'yi',
+    conditions,
+    transforms: {
+        plural: {
+            name: 'plural',
+            description: 'plural form of a noun',
+            rules: [
+                suffixInflection('ס', '', ['np'], ['ns']),
+                suffixInflection('ן', '', ['np'], ['ns']),
+                suffixInflection('ער', '', ['np'], ['ns']),
+                suffixInflection('ים', '', ['np'], ['ns']),
+            ],
+        },
+        diminutive: {
+            name: 'diminutive',
+            description: 'diminutive form of a noun',
+            rules: [
+                suffixInflection('לעך', '', ['n'], ['n']),
+                suffixInflection('טשיק', '', ['n'], ['n']),
+                suffixInflection('קע', '', ['n'], ['n']),
+            ],
+        },
+    },
+};

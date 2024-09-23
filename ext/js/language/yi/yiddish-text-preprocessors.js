@@ -17,6 +17,8 @@
 
 import {basicTextProcessorOptions} from '../text-processors.js';
 
+/* Unicode NFKC does not break apart Yiddish ligatures */
+
 const ligatures = [
     {lig: '\u05f0', split: '\u05d5' + '\u05d5'}, // װ -> וו
     {lig: '\u05f1', split: '\u05d5' + '\u05d9'}, // ױ -> וי
@@ -25,6 +27,7 @@ const ligatures = [
     {lig: '\ufb1f', split: '\u05d9' + '\u05d9' + '\u05b7'}, // ײַ -> ייַ
 ];
 
+/* This could probably be optimized with a regular expression and a function call in str.replace instead of a for loop */
 /** @type {import('language').BidirectionalConversionPreprocessor} */
 export const convertYiddishLigatures = {
     name: 'Split Ligatures',

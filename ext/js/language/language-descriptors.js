@@ -42,6 +42,7 @@ import {tagalogTransforms} from './tl/tagalog-transforms.js';
 import {normalizeDiacritics} from './vi/viet-text-preprocessors.js';
 import {convertFinalLetters} from './yi/yiddish-text-postprocessors.js';
 import {convertYiddishLigatures, removeYiddishDiacritics} from './yi/yiddish-text-preprocessors.js';
+import {yiddishTransforms} from './yi/yiddish-transforms.js';
 import {isStringPartiallyChinese, normalizePinyin} from './zh/chinese.js';
 
 const capitalizationPreprocessors = {
@@ -383,6 +384,7 @@ const languageDescriptors = [
         textPostprocessors: {
             convertFinalLetters,
         },
+        languageTransforms: yiddishTransforms,
     },
     {
         iso: 'yue',
